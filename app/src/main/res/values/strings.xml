@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">scavjunkbox</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notification_listener_service_name">notification_listener_service</string>
+    <string name="main_notification_channel_name">main_notification_channel</string>
+    <string name="notification_channel_main_description">main notification channel for scav junkbox</string>
+    <string name="notification_group_main_description">main notification group</string>
+    <string name="notification_channel_test_name">Test notification channel</string>
+    <string name="notification_channel_test_description">Notification channel for testing</string>
+    <string name="mf_placeholder">Click on the plus button to add an app</string>
+    <string name="notification_listener_permission_explanation">"Scav junk box needs to monitor notifications in order to work. "</string>
+    <string name="notification_listener_permission_positive_button">Go to notification settings</string>
+    <string name="select_app">select an app</string>
+    <string name="main_fragment_title">app list</string>
+</resources>

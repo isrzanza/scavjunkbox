@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.dorcohen.scavjunkbox.ui.test.TestFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/appPickerFragment"
+        tools:layout="@layout/fragment_app_picker"
+        android:name="com.dorcohen.scavjunkbox.ui.app_picker.AppPickerFragment"
+        android:label="AppPickerFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        tools:layout="@layout/fragment_main"
+        android:name="com.dorcohen.scavjunkbox.ui.main.MainFragment"
+        android:label="MainFragment" />
+</navigation>
