@@ -1,5 +1,6 @@
 package com.dorcohen.scavjunkbox.ui.test
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -62,7 +63,7 @@ class TestFragment : Fragment(),
             }
 
             testButton.setOnClickListener {
-               findNavController().navigate(R.id.appPickerFragment)
+                startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
             }
         }
     }

@@ -77,8 +77,6 @@ object NotificationHelper : INotificationHelper {
     /**
      * Create Notification
      */
-
-
     override fun notify(
         context: Context,
         notificationId:Int,

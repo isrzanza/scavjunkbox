@@ -7,15 +7,22 @@ import android.os.Bundle
 import android.provider.Settings
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "MainActivity"
         private const val RC = 777
+
+        private val fullScreenFragments = listOf(
+            R.id.appPickerFragment
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +33,13 @@ class MainActivity : AppCompatActivity() {
         if (!permissionGranted) {
             requestPermission()
         }
+        findNavController(R.id.nav_host_fragment)
+            .addOnDestinationChangedListener { _, destination, _ ->
+                val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+                if(destination.id in fullScreenFragments){
+                    bottomNav.visibility = View.GONE
+                } else bottomNav.visibility = View.VISIBLE
+            }
     }
 
     private fun checkPermission(): Boolean {

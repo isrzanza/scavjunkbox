@@ -4,7 +4,11 @@ import android.app.NotificationManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
+import androidx.lifecycle.Observer
+import com.dorcohen.scavjunkbox.IRepoAccess
 import com.dorcohen.scavjunkbox.data.model.AppInfo
+import com.dorcohen.scavjunkbox.data.repository.IRepository
+import com.dorcohen.scavjunkbox.data.repository.Repository
 import com.dorcohen.scavjunkbox.util.audio.AudioHelper
 import com.dorcohen.scavjunkbox.util.audio.IAudioHelper
 import com.dorcohen.scavjunkbox.resIdToUri
@@ -26,7 +30,8 @@ class NotificationListener :
         const val TAG = "NotificationListener"
     }
 
-    private var appList:List<AppInfo>? = null
+    private var repository: IRepository? = null
+    private var appList:ArrayList<AppInfo> = arrayListOf()
 
     private val tempWhiteList = arrayOf(
         "com.dorcohen.scavjunkbox"
@@ -36,10 +41,22 @@ class NotificationListener :
 
     override fun onCreate() {
         super.onCreate()
-        CoroutineScope(Dispatchers.IO).launch {
-
+        try {
+            val repoAccess = application as IRepoAccess
+            repository = repoAccess.getRepository()
+        }catch (e:Exception){
+            e.printStackTrace()
         }
-        //createChannels()
+
+        repository?.let{repo ->
+            repo.appList.observeForever(Observer {
+                val newList:ArrayList<AppInfo> = arrayListOf()
+                newList.addAll(it)
+                newList.add(AppInfo("com.dorcohen.scavjunkbox","Scav junk box",true))
+                appList = newList
+            })
+        }
+
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
@@ -75,8 +92,8 @@ class NotificationListener :
     }
 
     private fun appInList(pn:String):Boolean{
-        appList?.apply {
-            if(packageName == pn)return true
+        appList.forEach{
+            if(it.packageName == pn && it.active)return true
         }
         return false
     }

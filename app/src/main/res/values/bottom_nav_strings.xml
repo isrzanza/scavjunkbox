@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bn_notifications">Notifications</string>
+    <string name="bn_junkbox">Junk box</string>
+    <string name="bn_about">About</string>
+</resources>

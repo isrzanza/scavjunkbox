@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:checked="false"
+        android:icon="@drawable/ic_audiotrack"
+        android:title="@string/bn_junkbox" />
+    <item
+        android:id="@+id/mainFragment"
+        android:checked="true"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/bn_notifications" />
+    <item
+        android:checked="false"
+        android:icon="@drawable/ic_nfo"
+        android:title="@string/bn_about" />
+</menu>
