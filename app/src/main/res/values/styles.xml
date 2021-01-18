@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="tarkov_title">
+    <style name="TarkovTitle">
+        <item name="android:textColor">@color/tarkov_text_color</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_height">wrap_content</item>
@@ -10,5 +11,26 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+
+    <style name="TarkovTextMedium">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/tarkov_text_color</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TarkovTextSmall">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/tarkov_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.MaterialComponents.Dialog.Alert">
+
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textColorPrimary">@color/colorSecondaryLight</item>
+        <item name="android:colorAccent">@color/colorSecondary</item>
+
     </style>
 </resources>

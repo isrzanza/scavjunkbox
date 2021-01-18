@@ -2,15 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/go_to_junkboxFragment"
         android:checked="false"
         android:icon="@drawable/ic_audiotrack"
         android:title="@string/bn_junkbox" />
     <item
-        android:id="@+id/mainFragment"
+        android:id="@+id/go_to_mainFragment"
         android:checked="true"
         android:icon="@drawable/ic_notifications"
         android:title="@string/bn_notifications" />
     <item
+        android:id="@+id/go_to_aboutFragment"
         android:checked="false"
         android:icon="@drawable/ic_nfo"
         android:title="@string/bn_about" />

@@ -1,5 +1,6 @@
 package com.dorcohen.scavjunkbox.service
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
@@ -28,16 +29,20 @@ class NotificationListener :
 
     companion object {
         const val TAG = "NotificationListener"
+
+        private val categoryList = listOf(
+            Notification.CATEGORY_MESSAGE,
+            Notification.CATEGORY_EMAIL,
+            Notification.CATEGORY_RECOMMENDATION,
+            Notification.CATEGORY_REMINDER,
+            Notification.CATEGORY_SOCIAL
+        )
     }
 
     private var repository: IRepository? = null
     private var appList:ArrayList<AppInfo> = arrayListOf()
 
-    private val tempWhiteList = arrayOf(
-        "com.dorcohen.scavjunkbox"
-    )
-
-    private val tempMyChannels = arrayListOf(NotificationHelper.CHANNEL_TEST)
+    private val tempMyChannels = arrayListOf(NotificationHelper.CHANNEL_MAIN)
 
     override fun onCreate() {
         super.onCreate()
@@ -64,14 +69,19 @@ class NotificationListener :
         sbn?.apply {
             Log.d(TAG, "package name: $packageName")
             Log.d(TAG, "notification_channel, ${this.notification.channelId}")
-            if (appInList(packageName) && notification.channelId !in tempMyChannels) {
-                Log.d(TAG, "called repost")
+
+            val appInfo = appInList(packageName)
+
+            if (appInfo != null && notification.channelId !in tempMyChannels) {
+                Log.d(TAG,"notification data: $notification")
+                rePostNotification(this@apply, appInfo, applicationContext)
+
+                with(getNotificationManager(applicationContext)){
+                    if(notification.category in categoryList)
+                        playAudioResource(applicationContext.resIdToUri(getRandomAudioResource()),applicationContext)
+                }
                 //changeChannelSound(sbn.notification.channelId,uri,applicationContext)
                 //val channelName = resources.getResourceEntryName(getRandomAudioResource())
-
-                val appInfo = AppInfo("temp","temp")//todo replace with correct app info
-                rePostNotification(this, appInfo, applicationContext)
-                playAudioResource(applicationContext.resIdToUri(getRandomAudioResource()),applicationContext)
             }
         }
     }
@@ -91,10 +101,11 @@ class NotificationListener :
         }
     }
 
-    private fun appInList(pn:String):Boolean{
+    private fun appInList(pn:String):AppInfo?{
         appList.forEach{
-            if(it.packageName == pn && it.active)return true
+            if(it.packageName == pn && it.active)return it
         }
-        return false
+        return null
     }
+
 }

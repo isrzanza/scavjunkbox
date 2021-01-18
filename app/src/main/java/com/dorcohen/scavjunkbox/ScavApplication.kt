@@ -18,7 +18,7 @@ class ScavApplication : Application(), IRepoAccess {
             "scav_database"
         ).build()
 
-        repository = Repository(database)
+        repository = Repository(applicationContext,database)
     }
 
     override fun getRepository(): IRepository = repository

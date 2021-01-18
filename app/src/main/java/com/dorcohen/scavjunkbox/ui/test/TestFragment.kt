@@ -1,6 +1,7 @@
 package com.dorcohen.scavjunkbox.ui.test
 
 import android.content.Intent
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.dorcohen.scavjunkbox.IRepoAccess
 import com.dorcohen.scavjunkbox.R
+import com.dorcohen.scavjunkbox.data.model.SystemMessage
 import com.dorcohen.scavjunkbox.util.audio.AudioHelper
 import com.dorcohen.scavjunkbox.util.audio.IAudioHelper
 import com.dorcohen.scavjunkbox.databinding.FragmentTestBinding
@@ -44,18 +47,24 @@ class TestFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val access = requireActivity().application as IRepoAccess
+        val repo = access.getRepository()
+
+
+
         with(binding) {
             testNotificationButton.setOnClickListener {
                 Log.d(TAG, "click!")
                 notify(
                     requireContext(),
                     1,
-                    NotificationHelper.CHANNEL_MAIN,
+                    NotificationHelper.CHANNEL_TEST,
                     "test title",
                     "test body",
                     null,
                 )
             }
+
             testSoundButton.setOnClickListener {
                 val uri = requireContext().resIdToUri(getRandomAudioResource())
                 Log.d(TAG,uri.toString())

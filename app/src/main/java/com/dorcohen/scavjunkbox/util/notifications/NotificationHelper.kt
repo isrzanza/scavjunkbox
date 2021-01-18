@@ -34,15 +34,14 @@ object NotificationHelper : INotificationHelper {
         val channel = NotificationChannel(id, name, importance)
             .apply {
                 description = descriptionText
-                sound?.apply {
-                    val attributes = AudioAttributes
-                        .Builder()
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                        .build()
 
-                    setSound(this,attributes)
-                }
+                val attributes = AudioAttributes
+                    .Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .build()
+
+                setSound(sound,attributes)
             }
 
         //Register Channel with the system
@@ -83,7 +82,8 @@ object NotificationHelper : INotificationHelper {
         channelId: String,
         title: String,
         body: String,
-        action: PendingIntent?
+        action: PendingIntent?,
+        category: String
     ) {
         //testNotification(context,0,title,body)
         initChannel(channelId, context)
@@ -93,7 +93,7 @@ object NotificationHelper : INotificationHelper {
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
+            .setCategory(category)
         action?.apply {
             builder
                 .setContentIntent(this)
@@ -110,11 +110,10 @@ object NotificationHelper : INotificationHelper {
         sbn.notification?.let{notification ->
             with(getNotificationManager(context)){
                 cancel(sbn.id) //Cancel original notification
-                val newChannelId = CHANNEL_TEST // todo here create the real channel id from the app info
+                val newChannelId = CHANNEL_MAIN
 
                 initChannel(newChannelId,context) //todo replace with different function
-
-                //todo add group id
+                
                 val newNotification:Notification =
                     NotificationCompat.Builder(context, newChannelId)
                         .apply {
@@ -122,11 +121,9 @@ object NotificationHelper : INotificationHelper {
                                 setContentTitle(getString(Notification.EXTRA_TITLE))
                                 setContentText(getString(Notification.EXTRA_TEXT))
                             }
+                            setCategory(notification.category)
                             setSmallIcon(notification.smallIcon.resId)
                             setContentIntent(notification.contentIntent)
-                            getNotificationChannel(notification.channelId)?.let{ channel ->
-                                priority = channel.importance
-                            }
                         }
                         .build()
 

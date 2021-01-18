@@ -1,34 +1,38 @@
 package com.dorcohen.scavjunkbox.util.scav
 
 import com.dorcohen.scavjunkbox.R
+import com.dorcohen.scavjunkbox.data.model.ScavLine
+import com.dorcohen.scavjunkbox.data.model.getResList
 
 object ScavHelper : IScavHelper {
     private var lastIndex = -1
-    private val audioList = listOf(
-        R.raw.cheeki_breeki,
-        R.raw.cyka,
-        R.raw.opatski,
-        R.raw.oppacski,
-        R.raw.scav_laughing_2,
-        R.raw.scav_laughing_3,
-        R.raw.scav_normalnyy,
-        R.raw.scav_normalnyy_2,
-        R.raw.vizhu_pidorasa
-    )
 
-    override fun getVoiceLineResList(): List<Int> = audioList
+    override val scavLines: List<ScavLine> = listOf(
+    ScavLine(name = "Cheeki breeki",resId =  R.raw.cheeki_breeki),
+    ScavLine(name = "Cyka", resId = R.raw.cyka),
+    ScavLine(name = "Oppatski 1",R.raw.opatski),
+    ScavLine(name = "Oppatski 2",R.raw.oppacski),
+    ScavLine(name = "Scav laughing 1",R.raw.scav_laughing_2),
+    ScavLine(name = "Scav laughing 2",R.raw.scav_laughing_3),
+    ScavLine(name = "Normalnyy",R.raw.scav_normalnyy),
+    ScavLine(name = "Normalnyy",R.raw.scav_normalnyy_2),
+    ScavLine(name = "Vizhu pidorasa",R.raw.vizhu_pidorasa)
+)
+
+
+    override fun getVoiceLineResList(): List<Int> = scavLines.getResList()
 
     override fun getRandomAudioResource(): Int {
         val index =  kotlin.run {
-            var i = rand()
+            var i:Int = randomIndex()
             while(i == lastIndex){
-                i = rand()
+                i = randomIndex()
             }
             lastIndex = i
             i
         }
-        return audioList[index]
+        return scavLines[index].resId
     }
 
-    private fun rand():Int = audioList.indices.shuffled().first()
+    private fun randomIndex():Int = scavLines.indices.shuffled().first()
 }

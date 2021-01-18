@@ -26,7 +26,8 @@ class AppInfoAdapter(private val listener: ClickListener,private val showToggle:
     }
 
     interface ClickListener {
-        fun onClick(appInfo: AppInfo)
+        fun onContainerClick(appInfo: AppInfo)
+        fun onToggle(appInfo: AppInfo)
         fun getApplication():Application
     }
 }
@@ -44,13 +45,13 @@ class AppDetailsViewHolder(private val binding:ItemAppDetailBinding,private val 
                     visibility = View.VISIBLE
                     isChecked = appInfo.active
                     setOnClickListener {
-                        listener.onClick(appInfo)
+                        listener.onToggle(appInfo)
                     }
                 }
-            }else{
-                appInfoItemContainer.setOnClickListener {
-                    listener.onClick(appInfo)
-                }
+            }
+
+            appInfoItemContainer.setOnClickListener {
+                listener.onContainerClick(appInfo)
             }
         }
     }

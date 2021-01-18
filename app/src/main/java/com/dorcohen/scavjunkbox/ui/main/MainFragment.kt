@@ -1,17 +1,19 @@
 package com.dorcohen.scavjunkbox.ui.main
 
 import android.app.Application
-import androidx.lifecycle.ViewModelProvider
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dorcohen.scavjunkbox.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentMainBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
 import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
+
 
 class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
 
@@ -19,7 +21,7 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
         fun newInstance() = MainFragment()
     }
 
-    private val adapter = AppInfoAdapter(this,showToggle = true)
+    private val adapter = AppInfoAdapter(this, showToggle = true)
     private lateinit var binding:FragmentMainBinding
     private lateinit var mainViewModel: MainViewModel
 
@@ -28,10 +30,10 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
-        mainViewModel = ViewModelProvider(this,vmFactory).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, vmFactory).get(MainViewModel::class.java)
 
         return FragmentMainBinding
-            .inflate(inflater,container,false)
+            .inflate(inflater, container, false)
             .apply {
                 binding = this
                 appListRecycler.adapter = adapter
@@ -41,7 +43,13 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
             .root
     }
 
-    override fun onClick(appInfo: AppInfo) {
+    override fun onContainerClick(appInfo: AppInfo) {
+        val intent: Intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+            .putExtra(Settings.EXTRA_APP_PACKAGE, appInfo.packageName)
+        startActivity(intent)
+    }
+
+    override fun onToggle(appInfo: AppInfo) {
         mainViewModel.toggleApp(appInfo)
     }
 

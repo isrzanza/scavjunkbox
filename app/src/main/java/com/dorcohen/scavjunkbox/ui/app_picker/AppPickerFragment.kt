@@ -1,7 +1,6 @@
 package com.dorcohen.scavjunkbox.ui.app_picker
 
 import android.app.Application
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentAppPickerBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
@@ -49,9 +47,12 @@ class AppPickerFragment : Fragment(), AppInfoAdapter.ClickListener {
         }
     }
 
-    override fun onClick(appInfo: AppInfo) {
-        appPickerViewModel.addApp(appInfo)
-        findNavController().navigateUp()
+    override fun onContainerClick(appInfo: AppInfo) {
+        appPickerViewModel.addApp(appInfo,findNavController())
+    }
+
+    override fun onToggle(appInfo: AppInfo) {
+        //do nothing
     }
 
     override fun getApplication(): Application = requireActivity().application

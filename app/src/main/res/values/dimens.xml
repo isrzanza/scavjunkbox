@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="about_page_margin">32dp</dimen>
+    <dimen name="about_page_tarkov_info_margin">42dp</dimen>
+</resources>

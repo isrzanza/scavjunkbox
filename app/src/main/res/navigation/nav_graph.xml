@@ -20,4 +20,14 @@
         tools:layout="@layout/fragment_main"
         android:name="com.dorcohen.scavjunkbox.ui.main.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        tools:layout="@layout/fragment_about"
+        android:name="com.dorcohen.scavjunkbox.ui.about.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/junkBoxFragment"
+        tools:layout="@layout/junk_box_fragment"
+        android:name="com.dorcohen.scavjunkbox.ui.junkbox.JunkBoxFragment"
+        android:label="JunkBoxFragment" />
 </navigation>

@@ -7,8 +7,10 @@
     <color name="colorPrimaryLight">#484848</color>
     <color name="colorPrimaryDark">#000000</color>
 
-    <color name="colorSecondary">#ef6c00</color>
-    <color name="colorSecondaryLight">#ff9d3f</color>
-    <color name="colorSecondaryDark">#b53d00</color>
+    <color name="tarkov_text_color">#9a8866</color>
+
+    <color name="colorSecondary">#9a8866</color>
+    <color name="colorSecondaryLight">#cbb894</color>
+    <color name="colorSecondaryDark">#6b5b3b</color>
 
 </resources>

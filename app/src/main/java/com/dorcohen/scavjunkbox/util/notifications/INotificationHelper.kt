@@ -1,5 +1,6 @@
 package com.dorcohen.scavjunkbox.util.notifications
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -10,7 +11,7 @@ import com.dorcohen.scavjunkbox.data.model.AppInfo
 interface INotificationHelper {
     fun getNotificationManager(context: Context):NotificationManager
     fun createNotificationChannel(context: Context, id: String, name: String, descriptionText: String, importance: Int, sound:Uri? = null)
-    fun notify(context: Context, notificationId:Int, channelId:String, title:String, body:String, action: PendingIntent? = null)
+    fun notify(context: Context, notificationId:Int, channelId:String, title:String, body:String, action: PendingIntent? = null, category: String = Notification.CATEGORY_MESSAGE)
     fun rePostNotification(sbn: StatusBarNotification,appInfo:AppInfo,context: Context)
     //fun changeChannelSound(channelId:String,newSound:Uri, context: Context)
 }
