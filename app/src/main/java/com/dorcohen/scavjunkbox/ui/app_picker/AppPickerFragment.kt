@@ -2,6 +2,8 @@ package com.dorcohen.scavjunkbox.ui.app_picker
 
 import android.app.Application
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

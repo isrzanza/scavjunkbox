@@ -25,14 +25,15 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
 
     private val adapter = AppInfoAdapter(this, showToggle = true)
     private lateinit var binding:FragmentMainBinding
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var mainFragmentViewModel: MainFragmentViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
-        mainViewModel = ViewModelProvider(this, vmFactory).get(MainViewModel::class.java)
+        mainFragmentViewModel = ViewModelProvider(this, vmFactory).get(MainFragmentViewModel::class.java)
 
         return FragmentMainBinding
             .inflate(inflater, container, false)
@@ -40,7 +41,7 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
                 binding = this
                 appListRecycler.adapter = adapter
                 lifecycleOwner = viewLifecycleOwner
-                viewModel = mainViewModel
+                viewModel = mainFragmentViewModel
                 mainFragmentMenuButton.setOnClickListener {
                     popMenu(it)
                 }
@@ -55,7 +56,7 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
     }
 
     override fun onToggle(appInfo: AppInfo) {
-        mainViewModel.toggleApp(appInfo)
+        mainFragmentViewModel.toggleApp(appInfo)
     }
 
     override fun getApplication(): Application = requireActivity().application

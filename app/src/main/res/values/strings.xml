@@ -39,4 +39,5 @@
     <string name="notification_listener_permission_title">Action required</string>
     <string name="notification_access_settings">Notification access settings</string>
     <string name="app_picker_search_hint">Filter search results</string>
+    <string name="about_fragment_title">about</string>
 </resources>

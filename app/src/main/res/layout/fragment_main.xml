@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.dorcohen.scavjunkbox.ui.main.MainViewModel" />
+            type="com.dorcohen.scavjunkbox.ui.main.MainFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,18 +64,6 @@
             android:onClick="@{(v) -> viewModel.navigateToAddAppFragment(v)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/go_to_test_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:onClick="@{(v) -> viewModel.navigateToTestFragment(v)}"
-            android:text="Go to test"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/main_fragment_title"
