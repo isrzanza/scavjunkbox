@@ -69,16 +69,16 @@ class NotificationListener :
         sbn?.apply {
             Log.d(TAG, "package name: $packageName")
             Log.d(TAG, "notification_channel, ${this.notification.channelId}")
-
+            Log.d(TAG,"notification data: $notification")
             val appInfo = appInList(packageName)
-
             if (appInfo != null && notification.channelId !in tempMyChannels) {
-                Log.d(TAG,"notification data: $notification")
-                rePostNotification(this@apply, appInfo, applicationContext)
-
+                //rePostNotification(this@apply, appInfo, applicationContext)
                 with(getNotificationManager(applicationContext)){
-                    if(notification.category in categoryList)
+                    if(notification.category in categoryList){
                         playAudioResource(applicationContext.resIdToUri(getRandomAudioResource()),applicationContext)
+                        Log.d(TAG,"played sound")
+                    }
+
                 }
                 //changeChannelSound(sbn.notification.channelId,uri,applicationContext)
                 //val channelName = resources.getResourceEntryName(getRandomAudioResource())

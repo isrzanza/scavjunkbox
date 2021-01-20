@@ -7,8 +7,10 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentMainBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
@@ -39,6 +41,9 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
                 appListRecycler.adapter = adapter
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = mainViewModel
+                mainFragmentMenuButton.setOnClickListener {
+                    popMenu(it)
+                }
             }
             .root
     }
@@ -54,4 +59,19 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
     }
 
     override fun getApplication(): Application = requireActivity().application
+
+    private fun popMenu(view:View){
+        PopupMenu(requireContext(),view).apply {
+            menuInflater.inflate(R.menu.fragment_main_menu,menu)
+            setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.notification_access_settings -> {
+                        startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }.show()
+    }
 }

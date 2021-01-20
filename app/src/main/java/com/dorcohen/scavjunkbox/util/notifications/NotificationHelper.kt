@@ -113,7 +113,7 @@ object NotificationHelper : INotificationHelper {
                 val newChannelId = CHANNEL_MAIN
 
                 initChannel(newChannelId,context) //todo replace with different function
-                
+
                 val newNotification:Notification =
                     NotificationCompat.Builder(context, newChannelId)
                         .apply {

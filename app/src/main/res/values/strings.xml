@@ -1,16 +1,26 @@
 <resources>
-    <string name="app_name">ScavJunkBox</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Scav JunkBox</string>
     <string name="notification_listener_service_name">notification_listener_service</string>
     <string name="main_notification_channel_name">main_notification_channel</string>
     <string name="notification_channel_main_description">main notification channel for scav junkbox</string>
     <string name="notification_group_main_description">main notification group</string>
     <string name="notification_channel_test_name">Test notification channel</string>
     <string name="notification_channel_test_description">Notification channel for testing</string>
-    <string name="mf_placeholder">Click on the plus button to add an app</string>
-    <string name="notification_listener_permission_explanation">"Scav junk box needs to monitor notifications in order to work. "</string>
-    <string name="notification_listener_permission_positive_button">Go to notification settings</string>
+
+    <string name="mf_placeholder_empty">Click on the plus button to add an app</string>
+    <string name="mf_placeholder_not_empty">
+        In order to not hear the original app\'s notification sound:\n\n
+        1) click on the app item\n\n
+        2) click on the desired notification channel\n\n
+        3) click on "Sound" and pick "Silent"
+    </string>
+    <string name="notification_listener_permission_explanation">
+        In order to use Scav JunkBox notifications feature, notification access is required.\n\n
+        Would you like to go to the notification access settings page?
+    </string>
+
+    <string name="notification_listener_permission_positive_button">Yes</string>
+    <string name="notification_listener_permission_negative_button">No</string>
     <string name="select_app">select an app</string>
     <string name="main_fragment_title">app list</string>
 
@@ -27,4 +37,6 @@
     <string name="junkbox_fragment_title">Junkbox</string>
     <string name="error_app_allready_in_list">App already added</string>
     <string name="notification_listener_permission_title">Action required</string>
+    <string name="notification_access_settings">Notification access settings</string>
+    <string name="app_picker_search_hint">Filter search results</string>
 </resources>

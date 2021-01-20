@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val repository:IRepository) : ViewModel() {
     val appList:LiveData<List<AppInfo>> = repository.appList
 
-    val placeHolderVisibility: LiveData<Boolean> = Transformations.map(appList){
+    val appListEmpty: LiveData<Boolean> = Transformations.map(appList){
         val res = it.isEmpty()
         res
     }

@@ -3,9 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.dorcohen.scavjunkbox.ui.app_picker.AppPickerViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_search"
+            android:drawableTint="@color/colorSecondary"
+            android:ems="10"
+            android:hint="@string/app_picker_search_hint"
+            android:inputType="textPersonName"
+            android:padding="24dp"
+            android:text="@={viewModel.searchBoxText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_picker_fragment_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/app_list_recyclerView"
@@ -14,7 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_picker_fragment_title"
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
             tools:itemCount="5"
             tools:listitem="@layout/item_app_detail" />
 
@@ -25,5 +48,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/TarkovTitle" />
+
+        <ImageView
+            android:id="@+id/clear_search_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="@{() -> viewModel.clearSearch()}"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="@{viewModel.searchBoxText.empty ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+            app:srcCompat="@drawable/ic_close" />
+
+        <ProgressBar
+            android:id="@+id/app_list_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.progressBarVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/app_list_recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

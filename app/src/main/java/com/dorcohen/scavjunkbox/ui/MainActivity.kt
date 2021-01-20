@@ -87,9 +87,14 @@ class MainActivity : AppCompatActivity() {
                 { _, _ ->
                     startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
                 }
+                .setNegativeButton(getString(R.string.notification_listener_permission_negative_button))
+                { dialog ,_ ->
+                    dialog.dismiss()
+                }
                 .create()
         dialog.show()
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorSecondary))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.colorSecondaryDark))
     }
 
     override fun onRequestPermissionsResult(

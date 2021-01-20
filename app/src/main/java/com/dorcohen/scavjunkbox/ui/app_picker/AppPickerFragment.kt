@@ -16,7 +16,7 @@ import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
 
 class AppPickerFragment : Fragment(), AppInfoAdapter.ClickListener {
     private lateinit var appPickerViewModel: AppPickerViewModel
-    private lateinit var recyclerAdapter: AppInfoAdapter
+    private val recyclerAdapter: AppInfoAdapter = AppInfoAdapter(this)
     private lateinit var binding: FragmentAppPickerBinding
 
     override fun onCreateView(
@@ -24,26 +24,32 @@ class AppPickerFragment : Fragment(), AppInfoAdapter.ClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (!::recyclerAdapter.isInitialized) recyclerAdapter = AppInfoAdapter(this)
-
-        val vmFactory = DefaultViewModelFactory(requireActivity().application)
+        val app = requireActivity().application
+        val vmFactory = DefaultViewModelFactory(app)
         appPickerViewModel = ViewModelProvider(this, vmFactory).get(AppPickerViewModel::class.java)
+        appPickerViewModel.refreshAppList(app)
 
         return FragmentAppPickerBinding
             .inflate(inflater, container, false)
             .apply {
                 binding = this
+
+                with(appListRecyclerView) {
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    adapter = recyclerAdapter
+                }
+
+                viewModel = appPickerViewModel
+                lifecycleOwner = viewLifecycleOwner
             }
             .root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding.appListRecyclerView) {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = recyclerAdapter
-            recyclerAdapter.submitList(appPickerViewModel.getInstalledAppList(requireActivity().application))
+        appPickerViewModel.appList.observe(viewLifecycleOwner){
+            recyclerAdapter.submitList(it)
         }
     }
 

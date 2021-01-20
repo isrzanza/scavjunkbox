@@ -19,10 +19,26 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/scav1" />
+
+        <TextView
+            android:id="@+id/mf_placeholder_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@{viewModel.appListEmpty ? @string/mf_placeholder_empty : @string/mf_placeholder_not_empty}"
+            android:textAlignment="@{viewModel.appListEmpty? View.TEXT_ALIGNMENT_CENTER : View.TEXT_ALIGNMENT_TEXT_START}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/tarkov_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/app_list_recycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/app_list_recycler" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/app_list_recycler"
@@ -55,26 +71,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Go to test"
             android:onClick="@{(v) -> viewModel.navigateToTestFragment(v)}"
+            android:text="Go to test"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/mf_placeholder_textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/mf_placeholder"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/tarkov_text_color"
-            android:visibility="@{viewModel.placeHolderVisibility ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@+id/app_list_recycler"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/app_list_recycler" />
 
         <TextView
             android:id="@+id/main_fragment_title"
@@ -86,6 +87,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_menu_button"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/app_list_recycler"
+            app:layout_constraintEnd_toEndOf="@+id/main_fragment_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_vert" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
