@@ -13,7 +13,6 @@ object AppPicker : IAppPicker {
         appList.forEach {
            if((it.flags and ApplicationInfo.FLAG_SYSTEM) != 1){
                val appName = pm.getApplicationLabel(it).toString()
-               //val icon = pm.getApplicationIcon(it)
                val ai = AppInfo(it.packageName,appName)
                res.add(ai)
            }

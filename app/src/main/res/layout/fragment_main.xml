@@ -31,8 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:text="@{viewModel.appListEmpty ? @string/mf_placeholder_empty : @string/mf_placeholder_not_empty}"
-            android:textAlignment="@{viewModel.appListEmpty? View.TEXT_ALIGNMENT_CENTER : View.TEXT_ALIGNMENT_TEXT_START}"
+            android:text="@string/mf_placeholder_empty"
+            android:textAlignment="center"
+            android:visibility="@{viewModel.appListEmpty ? View.VISIBLE : View.GONE}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/tarkov_text_color"
             app:layout_constraintBottom_toBottomOf="@+id/app_list_recycler"
@@ -63,7 +64,8 @@
             android:src="@drawable/ic_add"
             android:onClick="@{(v) -> viewModel.navigateToAddAppFragment(v)}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/add_app_fab_content_description" />
 
         <TextView
             android:id="@+id/main_fragment_title"
@@ -84,7 +86,8 @@
             app:layout_constraintBottom_toTopOf="@+id/app_list_recycler"
             app:layout_constraintEnd_toEndOf="@+id/main_fragment_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_more_vert" />
+            app:srcCompat="@drawable/ic_more_vert"
+            android:contentDescription="@string/main_fragment_pop_up_menu_button_content_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

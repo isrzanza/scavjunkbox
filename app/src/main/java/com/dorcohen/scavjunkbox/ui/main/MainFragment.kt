@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentMainBinding
@@ -68,6 +69,10 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
                 when(it.itemId){
                     R.id.notification_access_settings -> {
                         startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                        true
+                    }
+                    R.id.faq_fragment -> {
+                        findNavController().navigate(R.id.action_mainFragment_to_faqFragment)
                         true
                     }
                     else -> false

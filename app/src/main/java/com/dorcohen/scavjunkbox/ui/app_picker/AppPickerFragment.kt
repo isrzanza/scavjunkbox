@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dorcohen.scavjunkbox.closeKeyboard
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentAppPickerBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
@@ -26,10 +27,8 @@ class AppPickerFragment : Fragment(), AppInfoAdapter.ClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val app = requireActivity().application
-        val vmFactory = DefaultViewModelFactory(app)
+        val vmFactory = DefaultViewModelFactory(requireActivity().application)
         appPickerViewModel = ViewModelProvider(this, vmFactory).get(AppPickerViewModel::class.java)
-        appPickerViewModel.refreshAppList(app)
 
         return FragmentAppPickerBinding
             .inflate(inflater, container, false)
@@ -48,15 +47,17 @@ class AppPickerFragment : Fragment(), AppInfoAdapter.ClickListener {
             .root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        appPickerViewModel.appList.observe(viewLifecycleOwner){
+    override fun onResume() {
+        super.onResume()
+        appPickerViewModel.appList.observe(viewLifecycleOwner) {
             recyclerAdapter.submitList(it)
         }
+        appPickerViewModel.refreshAppList(requireActivity().application)
     }
-
+    
     override fun onContainerClick(appInfo: AppInfo) {
-        appPickerViewModel.addApp(appInfo,findNavController())
+        requireContext().closeKeyboard(binding.root)
+        appPickerViewModel.addApp(appInfo, findNavController())
     }
 
     override fun onToggle(appInfo: AppInfo) {

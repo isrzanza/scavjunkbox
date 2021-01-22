@@ -4,4 +4,7 @@
     <item
         android:id="@+id/notification_access_settings"
         android:title="@string/notification_access_settings" />
+    <item
+        android:id="@+id/faq_fragment"
+        android:title="@string/faq_fragment_title" />
 </menu>

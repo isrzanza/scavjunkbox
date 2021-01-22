@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dorcohen.scavjunkbox.data.model.ScavLine
 import com.dorcohen.scavjunkbox.databinding.ItemScavLineBinding
+import java.util.*
 
 class ScavLineAdapter(private val listener:ScavLineAdapter.OnClickListener) : ListAdapter<ScavLine, ScavLineViewHolder>(ScavLineDiffUtilCallback()) {
     interface OnClickListener {

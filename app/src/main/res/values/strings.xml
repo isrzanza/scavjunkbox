@@ -40,4 +40,9 @@
     <string name="notification_access_settings">Notification access settings</string>
     <string name="app_picker_search_hint">Filter search results</string>
     <string name="about_fragment_title">about</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="faq_fragment_title">FAQ</string>
+    <string name="add_app_fab_content_description">add app to list</string>
+    <string name="main_fragment_pop_up_menu_button_content_description">pop up menu button</string>
 </resources>

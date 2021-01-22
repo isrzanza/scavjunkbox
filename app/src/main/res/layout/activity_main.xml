@@ -5,6 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         tools:context=".ui.MainActivity">
 
         <fragment
@@ -20,6 +21,7 @@
             app:navGraph="@navigation/nav_graph" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:animateLayoutChanges="true"
             android:id="@+id/bottomNavigationView"
             app:itemIconTint="@color/navigation_button_color"
             app:itemTextColor="@color/navigation_button_color"

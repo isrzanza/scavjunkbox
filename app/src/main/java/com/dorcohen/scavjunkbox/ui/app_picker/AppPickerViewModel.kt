@@ -20,18 +20,14 @@ class AppPickerViewModel(private val repository: IRepository) : ViewModel(),IApp
 
     val appList:LiveData<List<AppInfo>> = filteredAppList
 
-    val progressBarVisible:LiveData<Boolean> = Transformations.map(_appList){
-        val res = it == null
-        res
-    }
-
     init {
         setupAppListMediator()
     }
 
     fun refreshAppList(application:Application) = viewModelScope.launch {
-        val list = getInstalledAppList(application)
-        _appList.postValue(list)
+        getInstalledAppList(application).let{list ->
+            _appList.postValue(list)
+        }
     }
 
     fun addApp(appInfo:AppInfo,nav:NavController) = viewModelScope.launch {
