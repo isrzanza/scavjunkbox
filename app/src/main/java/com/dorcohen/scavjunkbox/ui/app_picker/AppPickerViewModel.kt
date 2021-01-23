@@ -21,6 +21,10 @@ class AppPickerViewModel(private val repository: IRepository) : ViewModel(),IApp
 
     val appList:LiveData<List<AppInfo>> = filteredAppList
 
+    init {
+        setupAppListMediator()
+    }
+
     fun refreshAppList(application:Application) = viewModelScope.launch {
         getInstalledAppList(application).let{list ->
             _appList.postValue(list)
