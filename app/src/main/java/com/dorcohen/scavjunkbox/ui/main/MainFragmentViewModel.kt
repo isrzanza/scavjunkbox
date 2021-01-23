@@ -1,5 +1,6 @@
 package com.dorcohen.scavjunkbox.ui.main
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
@@ -8,10 +9,10 @@ import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.data.repository.IRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository:IRepository) : ViewModel() {
+class MainFragmentViewModel(private val repository:IRepository) : ViewModel() {
     val appList:LiveData<List<AppInfo>> = repository.appList
 
-    val placeHolderVisibility: LiveData<Boolean> = Transformations.map(appList){
+    val appListEmpty: LiveData<Boolean> = Transformations.map(appList){
         val res = it.isEmpty()
         res
     }
@@ -20,11 +21,7 @@ class MainViewModel(private val repository:IRepository) : ViewModel() {
         repository.toggleApp(appInfo)
     }
 
-    fun navigateToTestFragment(view: View){
-        view.findNavController().navigate(R.id.testFragment)
-    }
-
     fun navigateToAddAppFragment(view:View){
-        view.findNavController().navigate(R.id.appPickerFragment)
+        view.findNavController().navigate(R.id.action_mainFragment_to_appPickerFragment)
     }
 }

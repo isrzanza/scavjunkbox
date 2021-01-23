@@ -4,5 +4,5 @@ import android.app.Application
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 
 interface IAppPicker {
-    fun getInstalledAppList(application: Application): List<AppInfo>
+    suspend fun getInstalledAppList(application: Application): List<AppInfo>
 }

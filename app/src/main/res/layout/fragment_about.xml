@@ -1,122 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <TextView
+           android:id="@+id/about_title_textView"
+           style="@style/TarkovTitle"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:text="@string/about_fragment_title"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/about_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        tools:context=".ui.about.AboutFragment">
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@+id/about_title_textView">
 
-        <TextView
-            android:id="@+id/about_title_textView"
-            style="@style/TarkovTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="about"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/bg_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/about_page_tarkov_info_margin"
-            android:adjustViewBounds="true"
-            android:src="@drawable/tarkov_site_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_textView" />
-
-        <TextView
-            android:id="@+id/about_textView"
-            style="@style/TarkovTextMedium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/about_page_tarkov_info_margin"
-            android:layout_marginStart="@dimen/about_page_margin"
-            android:layout_marginEnd="@dimen/about_page_margin"
-            android:text="@string/about_tarkov"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_title_textView" />
-
-        <ImageView
-            android:id="@+id/pre_order_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/tarkov_beta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bg_imageView" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/about_app_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pre_order_imageView">
-
-            <TextView
-                android:id="@+id/about_app_title_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/about_app"
-                android:textAppearance="@style/TarkovTextMedium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/developed_by_textView"
-                style="@style/TarkovTextSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/app_developed_by"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/about_app_title_textView" />
-
-            <TextView
-                android:id="@+id/contact_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/contact_me"
-                android:textAppearance="@style/TarkovTextSmall"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/developed_by_textView" />
-
-            <TextView
-                android:id="@+id/all_rights_reserved_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/about_page_margin"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/about_page_margin"
-                android:layout_marginBottom="32dp"
-                android:text="@string/all_rights_reserved"
-                android:textAlignment="center"
-                android:textAppearance="@style/TarkovTextSmall"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contact_textView" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/about_fragment_container"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/black"
+               tools:context=".ui.about.AboutFragment">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+               <ImageView
+                   android:id="@+id/bg_imageView"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/about_page_tarkov_info_margin"
+                   android:adjustViewBounds="true"
+                   android:src="@drawable/tarkov_site_bg"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.0"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/about_textView" />
+
+               <TextView
+                   android:id="@+id/about_textView"
+                   style="@style/TarkovTextMedium"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="@dimen/about_page_margin"
+                   android:layout_marginTop="42dp"
+                   android:layout_marginEnd="@dimen/about_page_margin"
+                   android:text="@string/about_tarkov"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+               <ImageView
+                   android:id="@+id/pre_order_imageView"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="110dp"
+                   android:adjustViewBounds="true"
+                   android:src="@drawable/tarkov_beta"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="@+id/bg_imageView" />
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/about_app_container"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/pre_order_imageView">
+
+                   <TextView
+                       android:id="@+id/about_app_title_textView"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="32dp"
+                       android:text="@string/about_app"
+                       android:textAppearance="@style/TarkovTextMedium"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <TextView
+                       android:id="@+id/developed_by_textView"
+                       style="@style/TarkovTextSmall"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:text="@string/app_developed_by"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/about_app_title_textView" />
+
+                   <TextView
+                       android:id="@+id/contact_textView"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:text="@string/contact_me"
+                       android:textAppearance="@style/TarkovTextSmall"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/developed_by_textView" />
+
+                   <TextView
+                       android:id="@+id/all_rights_reserved_textView"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/about_page_margin"
+                       android:layout_marginTop="16dp"
+                       android:layout_marginEnd="@dimen/about_page_margin"
+                       android:layout_marginBottom="32dp"
+                       android:text="@string/all_rights_reserved"
+                       android:textAlignment="center"
+                       android:textAppearance="@style/TarkovTextSmall"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/contact_textView" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+       </ScrollView>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

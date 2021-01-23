@@ -1,0 +1,20 @@
+<resources>
+    <string name="faq_fragment_title">FAQ</string>
+    <string name="faq_q_1">Why does the app require notification access?</string>
+    <string name="faq_a_1">In order to play a scav sound when a notification is received, it is necessary to monitor the incoming notifications.\nThe notification\'s content is not used in any other way besides that.</string>
+    <string name="faq_q_2">How can I share a scav audio line?</string>
+    <string name="faq_a_2">Perform a long press on a audio clip in the "Junk Box" page.</string>
+    <string name="faq_q_3">Is this an official app?</string>
+    <string name="faq_a_3">No, this is a fan app.</string>
+    <string name="faq_q_4">Is this app open source?</string>
+    <string name="faq_a_4">Yes, get the code at REPLACE WITH REPO LINK</string>
+    <string name="faq_q_5">I still hear the original notification sound in addition to the scav sound, what should I do?</string>
+    <string name="faq_a_5">To mute the original app\'s notification sound:\n
+        1) click on the app item In the main page\n
+        2) click on the desired notification channel\n
+        3) click on "Sound" and pick "Silent"</string>
+    <string name="faq_q_6">What is the font used in the titles?</string>
+    <string name="faq_a_6">It is a Tarkov inspired font by IWolf.</string>
+    <string name="faq_q_7">What will happen if I use this app while playing escape from tarkov?</string>
+    <string name="faq_a_7">It is recommended to switch the phone to silent mode when playing escape from tarkov to avoid moments of extreme stress.</string>
+</resources>

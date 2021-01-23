@@ -7,8 +7,11 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.databinding.FragmentMainBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
@@ -23,14 +26,15 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
 
     private val adapter = AppInfoAdapter(this, showToggle = true)
     private lateinit var binding:FragmentMainBinding
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var mainFragmentViewModel: MainFragmentViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
-        mainViewModel = ViewModelProvider(this, vmFactory).get(MainViewModel::class.java)
+        mainFragmentViewModel = ViewModelProvider(this, vmFactory).get(MainFragmentViewModel::class.java)
 
         return FragmentMainBinding
             .inflate(inflater, container, false)
@@ -38,7 +42,10 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
                 binding = this
                 appListRecycler.adapter = adapter
                 lifecycleOwner = viewLifecycleOwner
-                viewModel = mainViewModel
+                viewModel = mainFragmentViewModel
+                mainFragmentMenuButton.setOnClickListener {
+                    popMenu(it)
+                }
             }
             .root
     }
@@ -50,8 +57,27 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
     }
 
     override fun onToggle(appInfo: AppInfo) {
-        mainViewModel.toggleApp(appInfo)
+        mainFragmentViewModel.toggleApp(appInfo)
     }
 
     override fun getApplication(): Application = requireActivity().application
+
+    private fun popMenu(view:View){
+        PopupMenu(requireContext(),view).apply {
+            menuInflater.inflate(R.menu.fragment_main_menu,menu)
+            setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.notification_access_settings -> {
+                        startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                        true
+                    }
+                    R.id.faq_fragment -> {
+                        findNavController().navigate(R.id.action_mainFragment_to_faqFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }.show()
+    }
 }

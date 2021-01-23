@@ -14,6 +14,10 @@ import com.dorcohen.scavjunkbox.util.system.ISystemUtil
 
 class Repository(private val context: Context, database: Database) : IRepository, ISystemUtil,
     IScavHelper by ScavHelper {
+    init {
+        generateScavLineList(context)
+    }
+
     private val mainDao = database.mainDao()
 
     private val sysMessage: MutableLiveData<SystemMessage> = MutableLiveData()

@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dorcohen.scavjunkbox.data.model.ScavLine
 import com.dorcohen.scavjunkbox.databinding.ItemScavLineBinding
+import java.util.*
 
 class ScavLineAdapter(private val listener:ScavLineAdapter.OnClickListener) : ListAdapter<ScavLine, ScavLineViewHolder>(ScavLineDiffUtilCallback()) {
     interface OnClickListener {
         fun onClick(scavLine:ScavLine)
+        fun onLongClick(scavLine: ScavLine)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScavLineViewHolder {
@@ -31,8 +33,14 @@ class ScavLineViewHolder(val binding: ItemScavLineBinding) : RecyclerView.ViewHo
     fun bind(scavLine:ScavLine,listener:ScavLineAdapter.OnClickListener){
         with(binding){
             trackNameTextView.text = scavLine.name
-            playAudioImageButton.setOnClickListener {
-                listener.onClick(scavLine)
+            playAudioImageButton.apply {
+                setOnClickListener {
+                    listener.onClick(scavLine)
+                }
+                setOnLongClickListener {
+                    listener.onLongClick(scavLine)
+                    true
+                }
             }
         }
     }

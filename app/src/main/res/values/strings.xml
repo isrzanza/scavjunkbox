@@ -1,16 +1,21 @@
 <resources>
-    <string name="app_name">ScavJunkBox</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Scav JunkBox</string>
     <string name="notification_listener_service_name">notification_listener_service</string>
     <string name="main_notification_channel_name">main_notification_channel</string>
     <string name="notification_channel_main_description">main notification channel for scav junkbox</string>
     <string name="notification_group_main_description">main notification group</string>
     <string name="notification_channel_test_name">Test notification channel</string>
     <string name="notification_channel_test_description">Notification channel for testing</string>
-    <string name="mf_placeholder">Click on the plus button to add an app</string>
-    <string name="notification_listener_permission_explanation">"Scav junk box needs to monitor notifications in order to work. "</string>
-    <string name="notification_listener_permission_positive_button">Go to notification settings</string>
+
+    <string name="mf_placeholder_empty">Click on the plus button to add an app</string>
+
+    <string name="notification_listener_permission_explanation">
+        In order to use Scav JunkBox notifications feature, notification access is required.\n\n
+        Would you like to go to the notification access settings page?
+    </string>
+
+    <string name="notification_listener_permission_positive_button">Yes</string>
+    <string name="notification_listener_permission_negative_button">No</string>
     <string name="select_app">select an app</string>
     <string name="main_fragment_title">app list</string>
 
@@ -25,6 +30,20 @@
 
     <!--    JunkBox   -->
     <string name="junkbox_fragment_title">Junkbox</string>
+
     <string name="error_app_allready_in_list">App already added</string>
     <string name="notification_listener_permission_title">Action required</string>
+    <string name="notification_access_settings">Notification access settings</string>
+    <string name="app_picker_search_hint">Filter search results</string>
+    <string name="about_fragment_title">about</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add_app_fab_content_description">add app to list</string>
+    <string name="main_fragment_pop_up_menu_button_content_description">pop up menu button</string>
+    <string name="junkbox_share_intent_title">Share with</string>
+    <string name="app_name_path">scavJunkBox</string>
+    <string name="error_cannot_share">Error, share failed.</string>
+
+
+
 </resources>

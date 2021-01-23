@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.dorcohen.scavjunkbox.ui.main.MainViewModel" />
+            type="com.dorcohen.scavjunkbox.ui.main.MainFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,14 +15,21 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainFragment">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/mf_placeholder_textView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/mf_placeholder_empty"
+            android:textAlignment="center"
+            android:visibility="@{viewModel.appListEmpty ? View.VISIBLE : View.GONE}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/tarkov_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/app_list_recycler"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/scav1" />
+            app:layout_constraintTop_toTopOf="@+id/app_list_recycler" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/app_list_recycler"
@@ -47,34 +54,8 @@
             android:src="@drawable/ic_add"
             android:onClick="@{(v) -> viewModel.navigateToAddAppFragment(v)}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/go_to_test_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Go to test"
-            android:onClick="@{(v) -> viewModel.navigateToTestFragment(v)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/mf_placeholder_textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/mf_placeholder"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/tarkov_text_color"
-            android:visibility="@{viewModel.placeHolderVisibility ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@+id/app_list_recycler"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/app_list_recycler" />
+            android:contentDescription="@string/add_app_fab_content_description" />
 
         <TextView
             android:id="@+id/main_fragment_title"
@@ -86,6 +67,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/main_fragment_menu_button"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/app_list_recycler"
+            app:layout_constraintEnd_toEndOf="@+id/main_fragment_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_vert"
+            android:contentDescription="@string/main_fragment_pop_up_menu_button_content_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

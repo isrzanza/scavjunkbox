@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
 
-@BindingAdapter("app:mainFragmentRecyclerDataSet")
+@BindingAdapter("mainFragmentRecyclerDataSet")
 fun submitAppList(recycler:RecyclerView,dataSet:List<AppInfo>?){
     if(dataSet != null){
         try{

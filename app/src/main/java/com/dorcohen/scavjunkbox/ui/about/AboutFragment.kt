@@ -1,11 +1,16 @@
 package com.dorcohen.scavjunkbox.ui.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dorcohen.scavjunkbox.R
+import com.dorcohen.scavjunkbox.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
 
@@ -17,6 +22,20 @@ class AboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return FragmentAboutBinding
+            .inflate(inflater,container,false)
+            .apply {
+                preOrderImageView.setOnClickListener {
+                    openTrakovSite()
+                }
+            }.root
+    }
+
+    private fun openTrakovSite(){
+        val url = getString(R.string.buy_tarkov_link)
+        Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(url)
+            startActivity(this)
+        }
     }
 }

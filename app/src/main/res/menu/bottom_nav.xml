@@ -14,6 +14,6 @@
     <item
         android:id="@+id/go_to_aboutFragment"
         android:checked="false"
-        android:icon="@drawable/ic_nfo"
+        android:icon="@drawable/ic_info"
         android:title="@string/bn_about" />
 </menu>

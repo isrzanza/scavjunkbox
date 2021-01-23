@@ -9,12 +9,12 @@
 
         <ImageButton
             android:id="@+id/play_audio_imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/circle_shape"
-            android:backgroundTint="@color/colorPrimary"
-            android:tint="@color/tarkov_text_color"
+            android:backgroundTint="@color/sl_play_button_bg_color"
+            android:tint="@color/sl_play_button_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
