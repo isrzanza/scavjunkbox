@@ -33,4 +33,24 @@
         <item name="android:colorAccent">@color/colorSecondary</item>
 
     </style>
+
+    <style name="Faq_question">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Faq_answer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:textColor">@color/colorSecondaryLight</item>
+        <item name="android:textColorLink">@color/colorSecondaryLight</item>
+    </style>
 </resources>

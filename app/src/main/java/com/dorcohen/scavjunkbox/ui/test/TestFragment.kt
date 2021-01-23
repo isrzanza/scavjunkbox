@@ -24,7 +24,7 @@ import com.dorcohen.scavjunkbox.util.scav.ScavHelper
 
 class TestFragment : Fragment(),
     INotificationHelper by NotificationHelper,
-    IAudioHelper by AudioHelper,
+    IAudioHelper by AudioHelper(),
     IScavHelper by ScavHelper{
     private lateinit var binding: FragmentTestBinding
 

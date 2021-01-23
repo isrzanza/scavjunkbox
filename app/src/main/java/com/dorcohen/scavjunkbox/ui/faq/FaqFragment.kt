@@ -1,4 +1,4 @@
-package com.dorcohen.scavjunkbox.ui
+package com.dorcohen.scavjunkbox.ui.faq
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,6 @@ import com.dorcohen.scavjunkbox.R
 
 
 class FaqFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

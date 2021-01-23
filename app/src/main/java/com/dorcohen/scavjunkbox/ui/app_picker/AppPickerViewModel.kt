@@ -1,6 +1,7 @@
 package com.dorcohen.scavjunkbox.ui.app_picker
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.navigation.NavController
 import com.dorcohen.scavjunkbox.R
@@ -19,10 +20,6 @@ class AppPickerViewModel(private val repository: IRepository) : ViewModel(),IApp
     private val filteredAppList:MediatorLiveData<List<AppInfo>> = MediatorLiveData()
 
     val appList:LiveData<List<AppInfo>> = filteredAppList
-
-    init {
-        setupAppListMediator()
-    }
 
     fun refreshAppList(application:Application) = viewModelScope.launch {
         getInstalledAppList(application).let{list ->
@@ -58,27 +55,29 @@ class AppPickerViewModel(private val repository: IRepository) : ViewModel(),IApp
         filteredAppList.addSource(_appList){ al ->
            al?.apply {
                val txt = searchBoxText.value ?: ""
-               filteredAppList.value = filterList(this,txt)
+               filteredAppList.value = filterAppList(this,txt)
            }
         }
         filteredAppList.addSource(searchBoxText){ searchTxt ->
             _appList.value?.apply {
-                filteredAppList.value = filterList(this,searchTxt)
+                filteredAppList.value = filterAppList(this,searchTxt)
             }
         }
     }
 
-    private fun filterList(list:List<AppInfo>,txt:String):List<AppInfo>{
+    private fun filterAppList(list:List<AppInfo>, txt:String):List<AppInfo>{
+        /**
+         * Filter the app list by checking if the app's name contains the input text
+         */
         if(txt.isNotEmpty()){
             val newList = ArrayList<AppInfo>()
             list.forEach { appInfo ->
-            val name = appInfo.name
-            val sizeDiff = with(name.length - txt.length){
-                val res = if(this > 0)this else 0
-                res
+            val appName = appInfo.name
+            val sizeDiff = with(appName.length - txt.length){
+                if(this > 0)this else 0
             }
 
-            if(name.dropLast(sizeDiff).toLowerCase(Locale.ROOT).contains(txt.toLowerCase(Locale.ROOT)))
+            if(appName.dropLast(sizeDiff).toLowerCase(Locale.ROOT).contains(txt.toLowerCase(Locale.ROOT)))
                 newList.add(appInfo)
             }
             return newList

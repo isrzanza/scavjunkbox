@@ -5,6 +5,8 @@ import android.content.Context
 import android.net.Uri
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.dorcohen.scavjunkbox.data.model.ScavLine
+import java.io.File
 
 fun Context.resIdToUri(resId:Int): Uri =  Uri.parse("android.resource://${this.packageName}/$resId")
 

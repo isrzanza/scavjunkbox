@@ -1,5 +1,6 @@
 package com.dorcohen.scavjunkbox.ui.main
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.navigation.findNavController

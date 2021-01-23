@@ -1,23 +1,17 @@
 package com.dorcohen.scavjunkbox.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.transition.Slide
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.dorcohen.scavjunkbox.R
-import com.dorcohen.scavjunkbox.closeKeyboard
 import com.dorcohen.scavjunkbox.databinding.ActivityMainBinding
 import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
 
@@ -70,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Check notification access
-        if (!checkPermission()) requestPermission()
+        if (!checkNotificationAccessPermission()) requestNotificationAccessPermission()
 
         //Setup on navigation changed
         navController
@@ -82,13 +76,13 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun checkPermission(): Boolean {
+    private fun checkNotificationAccessPermission(): Boolean {
         val enabledNotificationListeners: String =
             Settings.Secure.getString(contentResolver, "enabled_notification_listeners")
         return enabledNotificationListeners.contains(packageName)
     }
 
-    private fun requestPermission() {
+    private fun requestNotificationAccessPermission() {
         val dialog =
             AlertDialog.Builder(this, R.style.AlertDialogCustom)
                 .setTitle(getString(R.string.notification_listener_permission_title))

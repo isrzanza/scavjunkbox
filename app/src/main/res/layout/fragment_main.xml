@@ -15,16 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainFragment">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/scav1" />
-
         <TextView
             android:id="@+id/mf_placeholder_textView"
             android:layout_width="0dp"

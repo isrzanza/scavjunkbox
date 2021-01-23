@@ -1,18 +1,15 @@
 package com.dorcohen.scavjunkbox.util.scav
 
 import android.content.Context
-import android.util.Log
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.ScavLine
 import com.dorcohen.scavjunkbox.data.model.getResList
-import java.util.*
 import kotlin.collections.ArrayList
 
 object ScavHelper : IScavHelper {
     private var lastIndex = -1
 
-    private val _scavLines:ArrayList<ScavLine> = arrayListOf()
-    override val scavLines = _scavLines
+    override val scavLines =  arrayListOf<ScavLine>()
 
     override fun getVoiceLineResList(): List<Int> = scavLines.getResList()
 
