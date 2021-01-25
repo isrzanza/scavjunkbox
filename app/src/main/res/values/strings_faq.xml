@@ -7,7 +7,7 @@
     <string name="faq_q_3">Is this an official app?</string>
     <string name="faq_a_3">No, this is a fan app.</string>
     <string name="faq_q_4">Is this app open source?</string>
-    <string name="faq_a_4">Yes, get the code at REPLACE WITH REPO LINK</string>
+    <string name="faq_a_4">Yes, get the code at https://github.com/isrzanza/scavjunkbox</string>
     <string name="faq_q_5">I still hear the original notification sound in addition to the scav sound, what should I do?</string>
     <string name="faq_a_5">To mute the original app\'s notification sound:\n
         1) click on the app item In the main page\n

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="junkbox_fragment_title">Junkbox</string>
+    <string name="junkbox_share_intent_title">Share with</string>
+    <string name="error_app_allready_in_list">App already added</string>
+    <string name="app_picker_search_hint">Filter search results</string>
+    <string name="add_app_fab_content_description">add app to list</string>
+    <string name="error_cannot_share">Error, share failed.</string>
+</resources>

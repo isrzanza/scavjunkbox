@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notification_listener_service_name">notification_listener_service</string>
+    <string name="main_notification_channel_name">main_notification_channel</string>
+    <string name="notification_channel_main_description">main notification channel for scav junkbox</string>
+    <string name="notification_channel_test_name">Test notification channel</string>
+    <string name="notification_channel_test_description">Notification channel for testing</string>
+    <string name="notification_listener_permission_explanation">
+        In order to use Scav JunkBox notifications feature, notification access is required.\n\n
+        Would you like to go to the notification access settings page?
+    </string>
+    <string name="notification_listener_permission_positive_button">Yes</string>
+    <string name="notification_listener_permission_negative_button">No</string>
+    <string name="select_app">select an app</string>
+    <string name="notifications_fragment_title">Notifications</string>
+    <string name="nf_placeholder_empty">Click on the plus button to add an app</string>
+    <string name="notification_listener_permission_title">Action required</string>
+    <string name="notification_access_settings">Notification access settings</string>
+    <string name="notifications_fragment_pop_up_menu_button_content_description">pop up menu button</string>
+</resources>

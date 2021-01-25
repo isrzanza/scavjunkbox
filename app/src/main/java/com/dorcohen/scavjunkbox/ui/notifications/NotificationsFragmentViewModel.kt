@@ -1,15 +1,17 @@
-package com.dorcohen.scavjunkbox.ui.main
+package com.dorcohen.scavjunkbox.ui.notifications
 
-import android.util.Log
 import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo
 import com.dorcohen.scavjunkbox.data.repository.IRepository
 import kotlinx.coroutines.launch
 
-class MainFragmentViewModel(private val repository:IRepository) : ViewModel() {
+class NotificationsFragmentViewModel(private val repository:IRepository) : ViewModel() {
     val appList:LiveData<List<AppInfo>> = repository.appList
 
     val appListEmpty: LiveData<Boolean> = Transformations.map(appList){
@@ -22,6 +24,6 @@ class MainFragmentViewModel(private val repository:IRepository) : ViewModel() {
     }
 
     fun navigateToAddAppFragment(view:View){
-        view.findNavController().navigate(R.id.action_mainFragment_to_appPickerFragment)
+        view.findNavController().navigate(R.id.action_notificationsFragment_to_appPickerFragment)
     }
 }

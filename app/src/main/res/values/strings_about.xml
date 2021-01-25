@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_tarkov">Escape from Tarkov is a hardcore and realistic online first-person action RPG/Simulator with MMO features developed by Battle State Games.</string>
+    <string name="buy_tarkov_link">https://www.escapefromtarkov.com/preorder-page</string>
+    <string name="about_app">About this app</string>
+    <string name="app_developed_by">Developed by Dor Cohen</string>
+    <string name="all_rights_reserved">All game material used in this app are owned by Battle State Games</string>
+    <string name="contact_me">Contact me at dorcohendev@gmail.com</string>
+    <string name="about_fragment_title">about</string>
+</resources>
