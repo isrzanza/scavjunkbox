@@ -1,7 +1,10 @@
 package com.dorcohen.scavjunkbox.ui.notifications
 
 import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo

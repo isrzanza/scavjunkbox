@@ -1,7 +1,6 @@
 package com.dorcohen.scavjunkbox.ui.app_picker
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.navigation.NavController
 import com.dorcohen.scavjunkbox.R

@@ -1,6 +1,5 @@
 package com.dorcohen.scavjunkbox.ui.junkbox
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.dorcohen.scavjunkbox.data.model.SystemMessage
 import com.dorcohen.scavjunkbox.data.model.nameNoInt

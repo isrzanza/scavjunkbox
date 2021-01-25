@@ -3,6 +3,7 @@ package com.dorcohen.scavjunkbox.service
 import android.app.KeyguardManager
 import android.app.Notification
 import android.app.NotificationManager
+import android.content.Context
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
@@ -13,20 +14,15 @@ import com.dorcohen.scavjunkbox.data.repository.IRepository
 import com.dorcohen.scavjunkbox.resIdToUri
 import com.dorcohen.scavjunkbox.util.audio.AudioHelper
 import com.dorcohen.scavjunkbox.util.audio.IAudioHelper
-import com.dorcohen.scavjunkbox.util.notifications.INotificationHelper
-import com.dorcohen.scavjunkbox.util.notifications.NotificationHelper
 import com.dorcohen.scavjunkbox.util.scav.IScavHelper
 import com.dorcohen.scavjunkbox.util.scav.ScavHelper
 
 class NotificationListener :
     NotificationListenerService(),
     IAudioHelper by AudioHelper(),
-    INotificationHelper by NotificationHelper,
     IScavHelper by ScavHelper {
 
     companion object {
-        const val TAG = "NotificationListener"
-
         private val categoryList = listOf(
             Notification.CATEGORY_MESSAGE,
             Notification.CATEGORY_EMAIL,
@@ -38,7 +34,6 @@ class NotificationListener :
 
     private var repository: IRepository? = null
     private var appList: ArrayList<AppInfo> = arrayListOf()
-
 
     override fun onCreate() {
         super.onCreate()
@@ -61,18 +56,12 @@ class NotificationListener :
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
         super.onNotificationPosted(sbn)
         sbn?.apply {
-            Log.d(TAG, "package name: $packageName")
-            Log.d(TAG, "notification_channel, ${this.notification.channelId}")
-            Log.d(TAG, "notification data: $notification")
             val appInfo = appInList(packageName)
             if (appInfo != null) {
                 with(getNotificationManager(applicationContext)) {
                     if (notification.category in categoryList && safeToPlaySound()) {
-                        playAudioResource(
-                            applicationContext.resIdToUri(getRandomAudioResource()),
-                            applicationContext
-                        )
-                        Log.d(TAG, "played sound")
+                        val uri = applicationContext.resIdToUri(getRandomAudioResource())
+                        playAudioResource(uri, applicationContext)
                     }
                 }
             }
@@ -103,4 +92,9 @@ class NotificationListener :
                 else -> true
             }
         }
+
+    private fun getNotificationManager(context: Context): NotificationManager =
+        context.getSystemService(
+            Context.NOTIFICATION_SERVICE
+        ) as NotificationManager
 }
