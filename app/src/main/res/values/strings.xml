@@ -17,7 +17,7 @@
     <string name="notification_listener_permission_positive_button">Yes</string>
     <string name="notification_listener_permission_negative_button">No</string>
     <string name="select_app">select an app</string>
-    <string name="main_fragment_title">app list</string>
+    <string name="main_fragment_title">Notifications</string>
 
     <!--    About   -->
     <string name="about">about</string>

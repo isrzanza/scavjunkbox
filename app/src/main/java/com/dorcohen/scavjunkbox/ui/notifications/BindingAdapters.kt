@@ -1,4 +1,4 @@
-package com.dorcohen.scavjunkbox.ui.main
+package com.dorcohen.scavjunkbox.ui.notifications
 
 import android.util.Log
 import androidx.databinding.BindingAdapter

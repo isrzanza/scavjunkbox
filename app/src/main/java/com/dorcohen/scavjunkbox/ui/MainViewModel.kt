@@ -10,7 +10,7 @@ import com.dorcohen.scavjunkbox.data.repository.IRepository
 class MainViewModel(repository: IRepository) : ViewModel() {
     val systemMessage = repository.systemUtil.getSystemMessage()
 
-    private var destination = NavigationDestination(R.id.mainFragment, R.id.mainFragment)
+    private var destination = NavigationDestination(R.id.junkBoxFragment, R.id.junkBoxFragment)
 
     fun navigateTo(navController: NavController, destinationId: Int): Boolean {
         if (destinationId != destination.current) {
@@ -27,22 +27,22 @@ class MainViewModel(repository: IRepository) : ViewModel() {
         when (destination.previous) {
             R.id.junkBoxFragment -> {
                 when (destination.current) {
-                    R.id.mainFragment -> R.id.action_junkBoxFragment_to_mainFragment
+                    R.id.notificationsFragment -> R.id.action_global_notificationsFragment
                     R.id.aboutFragment -> R.id.action_global_aboutFragment
                     else -> null
                 }
             }
-            R.id.mainFragment -> {
+            R.id.notificationsFragment -> {
                 when (destination.current) {
-                    R.id.junkBoxFragment -> R.id.action_global_junkBoxFragment
+                    R.id.junkBoxFragment -> R.id.action_notificationsFragment_to_junkBoxFragment
                     R.id.aboutFragment -> R.id.action_global_aboutFragment
                     else -> null
                 }
             }
             R.id.aboutFragment -> {
                 when (destination.current) {
-                    R.id.mainFragment -> R.id.action_aboutFragment_to_mainFragment
-                    R.id.junkBoxFragment -> R.id.action_global_junkBoxFragment
+                    R.id.notificationsFragment -> R.id.action_global_notificationsFragment
+                    R.id.junkBoxFragment -> R.id.action_aboutFragment_to_junkBoxFragment
                     else -> null
                 }
             }

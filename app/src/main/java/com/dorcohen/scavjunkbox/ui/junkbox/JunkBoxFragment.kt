@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.ScavLine
 import com.dorcohen.scavjunkbox.data.model.getTempFile
 import com.dorcohen.scavjunkbox.data.model.getUri
-import com.dorcohen.scavjunkbox.databinding.JunkBoxFragmentBinding
+import com.dorcohen.scavjunkbox.databinding.FragmentJunkBoxBinding
 import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
 import com.dorcohen.scavjunkbox.util.audio.AudioHelper
 import com.dorcohen.scavjunkbox.util.audio.IAudioHelper
@@ -24,7 +25,7 @@ class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(), ScavLineAdapt
     }
 
     private val recyclerAdapter = ScavLineAdapter(this)
-    private lateinit var binding: JunkBoxFragmentBinding
+    private lateinit var binding: FragmentJunkBoxBinding
     private lateinit var junkBoxViewModel: JunkBoxViewModel
 
     override fun onCreateView(
@@ -34,7 +35,7 @@ class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(), ScavLineAdapt
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
         junkBoxViewModel = ViewModelProvider(this, vmFactory).get(JunkBoxViewModel::class.java)
 
-        return JunkBoxFragmentBinding
+        return FragmentJunkBoxBinding
             .inflate(inflater, container, false)
             .apply {
                 binding = this
@@ -42,6 +43,9 @@ class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(), ScavLineAdapt
                     adapter = recyclerAdapter
                     layoutManager = GridLayoutManager(requireContext(), 3)
                     recyclerAdapter.submitList(junkBoxViewModel.scavLines)
+                }
+                faqImageButton.setOnClickListener {
+                    findNavController().navigate(R.id.action_global_faqFragment)
                 }
             }.root
     }

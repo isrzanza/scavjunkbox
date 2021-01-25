@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.databinding.ActivityMainBinding
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         //Setup system message
         viewModel.systemMessage.observe(this, Observer { message ->
-            message.Toast(this)
+            message.toast(this)
         })
 
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
@@ -46,34 +47,40 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment)
 
-        //Setup bottom Nav
-        with(binding.bottomNavigationView) {
-            selectedItemId = R.id.go_to_mainFragment
-            setOnNavigationItemSelectedListener {
-                var navigated = true
-                with(viewModel) {
-                    navigated = when (it.itemId) {
-                        R.id.go_to_mainFragment -> navigateTo(navController, R.id.mainFragment)
-                        R.id.go_to_aboutFragment -> navigateTo(navController, R.id.aboutFragment)
-                        R.id.go_to_junkboxFragment -> navigateTo(navController, R.id.junkBoxFragment)
-                        else -> false
-                    }
-                }
-                navigated
-            }
-        }
+        setupBottomNav(navController)
 
-        //Check notification access
-        if (!checkNotificationAccessPermission()) requestNotificationAccessPermission()
+        setupDestinationChangedListener(navController)
+    }
 
-        //Setup on navigation changed
+    private fun setupDestinationChangedListener(navController: NavController) {
         navController
             .addOnDestinationChangedListener { _, destination, _ ->
                 binding.bottomNavigationView.apply {
                     visibility =
                         if (destination.id in fullScreenFragments) View.GONE else View.VISIBLE
                 }
+                if (destination.id == R.id.notificationsFragment) {
+                    //Check notification access
+                    if (!checkNotificationAccessPermission()) requestNotificationAccessPermission()
+                }
             }
+    }
+
+    private fun setupBottomNav(navController: NavController) {
+        with(binding.bottomNavigationView) {
+            selectedItemId = R.id.go_to_junkboxFragment
+            setOnNavigationItemSelectedListener {
+                with(viewModel) {
+                    when (it.itemId) {
+                        R.id.go_to_notificationsFragment -> navigateTo(navController, R.id.notificationsFragment)
+                        R.id.go_to_aboutFragment -> navigateTo(navController, R.id.aboutFragment)
+                        R.id.go_to_junkboxFragment -> navigateTo(navController, R.id.junkBoxFragment
+                        )
+                        else -> false
+                    }
+                }
+            }
+        }
     }
 
     private fun checkNotificationAccessPermission(): Boolean {

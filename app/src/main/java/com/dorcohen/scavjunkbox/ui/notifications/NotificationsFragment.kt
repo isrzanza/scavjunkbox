@@ -1,4 +1,4 @@
-package com.dorcohen.scavjunkbox.ui.main
+package com.dorcohen.scavjunkbox.ui.notifications
 
 import android.app.Application
 import android.content.Intent
@@ -13,20 +13,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dorcohen.scavjunkbox.R
 import com.dorcohen.scavjunkbox.data.model.AppInfo
-import com.dorcohen.scavjunkbox.databinding.FragmentMainBinding
+import com.dorcohen.scavjunkbox.databinding.FragmentNotificationsBinding
 import com.dorcohen.scavjunkbox.util.AppInfoAdapter
 import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
 
 
-class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
+class NotificationsFragment : Fragment(),AppInfoAdapter.ClickListener {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = NotificationsFragment()
     }
 
     private val adapter = AppInfoAdapter(this, showToggle = true)
-    private lateinit var binding:FragmentMainBinding
-    private lateinit var mainFragmentViewModel: MainFragmentViewModel
+    private lateinit var binding: FragmentNotificationsBinding
+    private lateinit var notificationsFragmentViewModel: NotificationsFragmentViewModel
 
 
     override fun onCreateView(
@@ -34,15 +34,15 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
-        mainFragmentViewModel = ViewModelProvider(this, vmFactory).get(MainFragmentViewModel::class.java)
+        notificationsFragmentViewModel = ViewModelProvider(this, vmFactory).get(NotificationsFragmentViewModel::class.java)
 
-        return FragmentMainBinding
+        return FragmentNotificationsBinding
             .inflate(inflater, container, false)
             .apply {
                 binding = this
                 appListRecycler.adapter = adapter
                 lifecycleOwner = viewLifecycleOwner
-                viewModel = mainFragmentViewModel
+                viewModel = notificationsFragmentViewModel
                 mainFragmentMenuButton.setOnClickListener {
                     popMenu(it)
                 }
@@ -57,7 +57,7 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
     }
 
     override fun onToggle(appInfo: AppInfo) {
-        mainFragmentViewModel.toggleApp(appInfo)
+        notificationsFragmentViewModel.toggleApp(appInfo)
     }
 
     override fun getApplication(): Application = requireActivity().application
@@ -72,7 +72,7 @@ class MainFragment : Fragment(),AppInfoAdapter.ClickListener {
                         true
                     }
                     R.id.faq_fragment -> {
-                        findNavController().navigate(R.id.action_mainFragment_to_faqFragment)
+                        findNavController().navigate(R.id.action_global_faqFragment)
                         true
                     }
                     else -> false

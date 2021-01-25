@@ -3,41 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/junkBoxFragment">
 
     <fragment
         android:id="@+id/appPickerFragment"
         tools:layout="@layout/fragment_app_picker"
         android:name="com.dorcohen.scavjunkbox.ui.app_picker.AppPickerFragment"
         android:label="AppPickerFragment" />
-    <fragment
-        android:id="@+id/mainFragment"
-        tools:layout="@layout/fragment_main"
-        android:name="com.dorcohen.scavjunkbox.ui.main.MainFragment"
-        android:label="MainFragment" >
-        <action
-            android:id="@+id/action_mainFragment_to_appPickerFragment"
-            app:destination="@id/appPickerFragment"
-            app:enterAnim="@anim/slide_in_down"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_down" />
-        <action
-            android:id="@+id/action_mainFragment_to_faqFragment"
-            app:destination="@id/faqFragment"
-            app:enterAnim="@anim/slide_in_down"
-            app:exitAnim="@anim/slide_out_down"
-            app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_down" />
-    </fragment>
+
     <fragment
         android:id="@+id/aboutFragment"
         tools:layout="@layout/fragment_about"
         android:name="com.dorcohen.scavjunkbox.ui.about.AboutFragment"
         android:label="AboutFragment" >
+
         <action
-            android:id="@+id/action_aboutFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            android:id="@+id/action_aboutFragment_to_junkBoxFragment"
+            app:destination="@id/junkBoxFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
@@ -47,28 +29,10 @@
     </fragment>
     <fragment
         android:id="@+id/junkBoxFragment"
-        tools:layout="@layout/junk_box_fragment"
+        tools:layout="@layout/fragment_junk_box"
         android:name="com.dorcohen.scavjunkbox.ui.junkbox.JunkBoxFragment"
-        android:label="JunkBoxFragment" >
-        <action
-            android:id="@+id/action_junkBoxFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <action
-        android:id="@+id/action_global_junkBoxFragment"
-        app:destination="@id/junkBoxFragment"
-        app:enterAnim="@anim/slide_in_left"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_right"
-        app:popExitAnim="@anim/slide_out_right"
-        app:popUpTo="@id/mainFragment"
-        app:popUpToInclusive="false" />
+        android:label="JunkBoxFragment" />
+
     <action
         android:id="@+id/action_global_aboutFragment"
         app:destination="@id/aboutFragment"
@@ -76,11 +40,47 @@
         app:exitAnim="@anim/slide_out_right"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_left"
-        app:popUpTo="@id/mainFragment"
+        app:popUpTo="@id/junkBoxFragment"
         app:popUpToInclusive="false" />
     <fragment
         android:id="@+id/faqFragment"
         android:name="com.dorcohen.scavjunkbox.ui.faq.FaqFragment"
         android:label="fragment_faq"
         tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.dorcohen.scavjunkbox.ui.notifications.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications"
+        android:label="NotificationsFragment" >
+        <action
+            android:id="@+id/action_notificationsFragment_to_appPickerFragment"
+            app:destination="@id/appPickerFragment"
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_down" />
+        <action
+            android:id="@+id/action_notificationsFragment_to_junkBoxFragment"
+            app:destination="@id/junkBoxFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_notificationsFragment"
+        app:destination="@id/notificationsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
+    <action
+        android:id="@+id/action_global_faqFragment"
+        app:destination="@id/faqFragment"
+        app:enterAnim="@anim/slide_in_down"
+        app:exitAnim="@anim/slide_out_down"
+        app:popEnterAnim="@anim/slide_in_down"
+        app:popExitAnim="@anim/slide_out_down" />
 </navigation>
