@@ -19,7 +19,7 @@ import com.dorcohen.scavjunkbox.util.DefaultViewModelFactory
 import com.dorcohen.scavjunkbox.util.audio.AudioHelper
 import com.dorcohen.scavjunkbox.util.audio.IAudioHelper
 
-class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(), ScavLineAdapter.OnClickListener {
+class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(AudioHelper.mediaAtr), ScavLineAdapter.OnClickListener {
     companion object {
         fun newInstance() = JunkBoxFragment()
     }
@@ -31,7 +31,7 @@ class JunkBoxFragment : Fragment(), IAudioHelper by AudioHelper(), ScavLineAdapt
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
         junkBoxViewModel = ViewModelProvider(this, vmFactory).get(JunkBoxViewModel::class.java)
 

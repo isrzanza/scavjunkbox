@@ -32,7 +32,7 @@ class NotificationsFragment : Fragment(),AppInfoAdapter.ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val vmFactory = DefaultViewModelFactory(requireActivity().application)
         notificationsFragmentViewModel = ViewModelProvider(this, vmFactory).get(NotificationsFragmentViewModel::class.java)
 

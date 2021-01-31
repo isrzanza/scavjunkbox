@@ -19,7 +19,7 @@ import com.dorcohen.scavjunkbox.util.scav.ScavHelper
 
 class NotificationListener :
     NotificationListenerService(),
-    IAudioHelper by AudioHelper(),
+    IAudioHelper by AudioHelper(AudioHelper.notificationAtr),
     IScavHelper by ScavHelper {
 
     companion object {
