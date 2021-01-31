@@ -6,32 +6,39 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-import kotlinx.coroutines.withContext
 
-class AudioHelper : IAudioHelper {
+class AudioHelper(private val audioAttributes: AudioAttributes) : IAudioHelper {
     companion object {
-        private val attributes = AudioAttributes
+        val notificationAtr = AudioAttributes
             .Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .setUsage(AudioAttributes.USAGE_NOTIFICATION)
             .build()
+
+        val mediaAtr = AudioAttributes
+            .Builder()
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .build()
     }
 
-    private var playing = false
+    private val cooldown = 800
+    private var lastPlayed = 0L
+    private val currentTime:Long
+    get() = System.currentTimeMillis()
 
     override fun playAudioResource(uri: Uri, context: Context) {
         try {
             with(MediaPlayer()) {
-                if (!playing) {
+                if (currentTime - lastPlayed > cooldown) {
                     requestAudioFocus(context)
-                    playing = true
-                    setAudioAttributes(attributes)
+                    lastPlayed = currentTime
+                    setAudioAttributes(audioAttributes)
                     setDataSource(context, uri)
                     prepare()
                     start()
                 }
                 setOnCompletionListener {
-                    playing = false
                     releaseAudioFocus(context)
                     release()
                 }
@@ -56,5 +63,6 @@ class AudioHelper : IAudioHelper {
     private fun audioFocusRequest():AudioFocusRequest =
         AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
             .build()
+
     private fun audioManager(context: Context):AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 }
