@@ -2,8 +2,8 @@ package com.dorcohen.scavjunkbox.ui.notifications
 
 import android.view.View
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.dorcohen.scavjunkbox.R
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class NotificationsFragmentViewModel(private val repository:IRepository) : ViewModel() {
     val appList:LiveData<List<AppInfo>> = repository.appList
 
-    val appListEmpty: LiveData<Boolean> = Transformations.map(appList){
+    val appListEmpty: LiveData<Boolean> = appList.map{
         val res = it.isEmpty()
         res
     }

@@ -3,6 +3,7 @@ package com.dorcohen.scavjunkbox.util
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.dorcohen.scavjunkbox.IRepoAccess
 import com.dorcohen.scavjunkbox.data.repository.IRepository
 
@@ -18,8 +19,7 @@ class DefaultViewModelFactory(application: Application? = null) : ViewModelProvi
         }
     }
 
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         try{
             return modelClass.getConstructor(IRepository::class.java).newInstance(repository)
         }catch (e:Exception){

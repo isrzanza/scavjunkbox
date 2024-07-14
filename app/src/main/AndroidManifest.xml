@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.dorcohen.scavjunkbox">
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
@@ -13,7 +12,8 @@
         android:roundIcon="@mipmap/ic_scav_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Scavjunkbox_main">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,8 @@
 
         <service android:name="com.dorcohen.scavjunkbox.service.NotificationListener"
             android:label="@string/notification_listener_service_name"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
